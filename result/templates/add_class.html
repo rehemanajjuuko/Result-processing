@@ -1,0 +1,44 @@
+{% extends "./base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<h1>ADD CLASS</h1>
+
+<div class="container">
+  <form method="POST">
+    {% csrf_token %}
+    {{ form|crispy }}
+    {% if msg %}
+      {{ msg }}
+    {% endif %}
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">No.</th>
+          <th scope="col">class</th>
+          <th scope="col">Short Form</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for class in class_s %}
+          <tr>
+            <th scope="row">{{ subject.id }}</th>
+            <td>{{ class.class_s }}</td>
+            <td>{{ class.class_short_form }}</td>
+            <td>
+              <a href="{% url 'edit_class_page' class.id %}">Edit</a>
+              <a href="{% url 'delete_class_page' class.id %}" onclick="return confirm('Are you sure you want to delete?')">Delete</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <p><input type="submit" class="btn btn-primary"></p>
+  </form>
+
+</div>
+
+{% endblock content %}

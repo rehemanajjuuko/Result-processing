@@ -1,0 +1,9 @@
+{% extends "./base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <h1>GUARDIAN DETAILS</h1>
+    <h2>this page has a list of information of all guardians</h2>
+        <p><a href="{% url 'index_page' %}">Back to Home</a></p>
+        <p><a href="{% url 'class_page' %}">Go to Class Details</a>
+
+{% endblock content %}

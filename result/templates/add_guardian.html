@@ -1,0 +1,76 @@
+{% extends "./base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+    <h1>ADD GUARDIAN</h1>
+<div class="container">
+
+
+    <form method="POST">
+    {% csrf_token %}
+    {{form|crispy}}
+    {% if msg%}
+      {{msg}} 
+    {% endif %}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">No.</th>
+            <th scope="col">student</th>
+            <th scope="col">first_name</th>
+            <th scope="col">second_name</th>
+            <th scope="col">address</th>
+            <th scope="col">gender</th>
+            <th scope="col">contact</th>
+            <th scope="col">relationship</th>
+
+        </tr>
+    </thead>
+   <tbody>
+    {% for guardian in guardians %}
+     <tr>
+        <th scope="row">{{guardian.id}}</th>
+        <td> {{guardian.student}} </td>
+        <td> {{guardian.first_name}} </td>
+        <td> {{guardian.second_name}} </td>
+        <td> {{guardian.address}} </td>
+        <td> {{guardian.gender}} </td>
+        <td> {{guardian.contact}} </td>
+        <td> {{guardian.relationship}} </td>
+
+        <td> 
+            <a href="{% url 'edit_guardian_page' guardian.id   %}">Edit</a>
+            <a href="{% url 'delete_guardian' guardian.id %}"
+            onclick="return confirm('Are you sure you want to delete')">
+            Delete</a>
+
+        </td>
+
+    </tr>
+
+
+    {% endfor %}
+   
+  </tbody>
+
+
+</table>
+
+</div>
+<div class="container">
+    
+<p><input type ="submit" class ="btn btn-primary"></p>
+</div>
+
+
+
+    </form>
+
+
+
+{% endblock content %}
+
+
+
+    
