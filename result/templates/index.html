@@ -1,0 +1,27 @@
+{% extends "./base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<h1>WELCOME TO RESULT PROCESSING APP</h1>
+  
+ 
+<p><a href="{% url 'student_registered' %}">Registered Students</a></p>
+<p><a href="{% url 'class_page' %}">Class Details</a></p>
+<p><a href="{% url 'guardian_page' %}">Guardian Details</a></p>
+<p><a href="{% url 'add_guardian_page' %}">Add Guardian</a></p>
+<p><a href="{% url 'add_student_page' %}">Add Student</a></p>
+<p><a href="{% url 'add_subject_page' %}">Add Subject</a></p>
+<p><a href="{% url 'add_class_page' %}">Add Class</a></p>
+<p><a href="{% url 'add_academic_class_page' %}">Add Academic Class</a></p>
+
+{% endblock content %}
+  
+  
+  
+  
+  
+  
+
+  
+  
+

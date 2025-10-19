@@ -1,0 +1,14 @@
+{% extends "./base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <h1> CLASS DETAILS</h1>
+    <OL>
+        <li>primary one</li>
+        <li>primary two</li>
+        <li>primary three</li>
+        <li>primary four</li>
+    </OL>
+    <a href="{% url 'student_registered' %}">Registered Students</a>
+    <p><a href="{% url 'index_page' %}"> back home</a></p> 
+{% endblock content %}
+    
