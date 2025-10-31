@@ -17,16 +17,50 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
+      {% if user.is_authenticated %}
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{% url "index_page" %}">Home</a>
         </li>
         <li class="nav-item">
     
-          <a class="nav-link" href="{% url "class_page" %}">Class</a>
+          <a class="nav-link" href="{% url "add_student_page" %}">STUDENTS</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url "subjects_page" %}">Subjects</a>
+          <a class="nav-link" href="{% url "add_result_page" %}">RESULTS</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url "add_exam_page" %}">EXAMS</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{% url "add_class_page" %}">CLASS</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{% url "add_grading_page" %}">GRADING</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url "add_academic_class_page" %}">ACADEMIC CLASS</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url "add_guardian_page" %}">GUARDIANS</a>
+        </li>
+        <li class="nav-item">
+          <form method="post" action="{% url 'logout' %}" style="display:inline;">
+          {% csrf_token %}
+          <button type="submit" class="nav-link btn btn-link" style="display:inline">LOGOUT</button>
+          </form>
+        </li>
+      {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url "sign_up_page" %}">SIGN UP</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url "login" %}">LOGIN</a>
+        </li>
+      {% endif %}
+        
+
        
       </ul>
     </div>

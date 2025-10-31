@@ -1,0 +1,74 @@
+{% extends "./base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+    <h1>GRADING CRETERIA</h1>
+<div class="container">
+
+
+    <form method="POST">
+    {% csrf_token %}
+    {{form|crispy}}
+    {% if msg%}
+      {{msg}} 
+    {% endif %}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">No.</th>
+            <th scope="col">points</th>
+            <th scope="col">max_score</th>
+            <th scope="col">min_score</th>
+            <th scope="col">grade</th>
+            <th scope="col">Actions</th>
+            
+
+        </tr>
+    </thead>
+   <tbody>
+    {% for grading in grading %}
+     <tr>
+        <th scope="row">{{grading.id}}</th>
+        <td> {{grading.points}} </td>
+        <td> {{grading.max_score}} </td>
+        <td> {{grading.min_score}} </td>
+        <td> {{grading.grade}} </td>
+       
+
+         <td> 
+            <a href="{% url 'edit_grading_page' grading.id   %}">Edit</a>
+            <a href="{% url 'delete_grading_page' grading.id %}"
+            onclick="return confirm('Are you sure you want to delete')">
+            Delete</a>
+           
+
+        </td>
+
+    </tr>
+
+
+    {% endfor %}
+   
+  </tbody>
+
+
+</table>
+
+</div>
+<div class="container">
+    
+<p><input type ="submit" class ="btn btn-primary"></p>
+</div>
+
+
+
+  </form>
+
+
+
+{% endblock content %}
+
+
+
+    

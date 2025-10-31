@@ -16,20 +16,20 @@
       <thead>
         <tr>
           <th scope="col">No.</th>
-          <th scope="col">class</th>
-          <th scope="col">Short Form</th>
-          <th scope="col">Actions</th>
+          <th scope="col">CLASS NAME</th>
+          <th scope="col">CLASS</th>
+          <th scope="col">ACTIONS</th>
         </tr>
       </thead>
       <tbody>
-        {% for class in class_s %}
+        {% for class_s in class_s %}
           <tr>
-            <th scope="row">{{ subject.id }}</th>
-            <td>{{ class.class_s }}</td>
-            <td>{{ class.class_short_form }}</td>
+            <th scope="row">{{ class_s.id }}</th>
+            <td>{{ class_s.class_s }}</td>
+            <td>{{ class_s.class_short_form }}</td>
             <td>
-              <a href="{% url 'edit_class_page' class.id %}">Edit</a>
-              <a href="{% url 'delete_class_page' class.id %}" onclick="return confirm('Are you sure you want to delete?')">Delete</a>
+              <a href="{% url 'edit_class_page' class_s.id %}">Edit</a>
+              <a href="{% url 'delete_subject_page' class_s.id %}" onclick="return confirm('Are you sure you want to delete?')">Delete</a>
             </td>
           </tr>
         {% endfor %}

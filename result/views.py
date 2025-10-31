@@ -1,14 +1,22 @@
 from django.shortcuts import render,redirect
 from django.urls import reverse
 
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+
+
 from result.forms import GuardianForm,StudentForm,SubjectForm, ClassForm
 from result.forms import AcademicClassForm
-from result.models import AcademicClass
-from result.models import Guardian,Student,Subject,Class
+from result.models import AcademicClass,Result
+from result.models import Guardian,Student,Subject,Class,Grading,Exam
+from result.forms import GradingForm
+from result.forms import ExamForm
+from result.forms import ResultForm
 
 
 
 
+@login_required
 def index_view(request):
     return render (request,'index.html')
 
@@ -26,6 +34,8 @@ def  subject_view (request):
     return render (request, 'subject.html')
 
 #GUARDIAN
+
+@login_required
 def add_guardian_view (request):
     message =''
     if request.method == "POST":
@@ -52,6 +62,7 @@ def add_guardian_view (request):
     
     return render(request,"add_guardian.html",context)
 
+@login_required
 def edit_guardian_view(request,guardian_id):
     guardian = Guardian.objects.get(id=guardian_id)
     message = ""
@@ -77,6 +88,7 @@ def edit_guardian_view(request,guardian_id):
 
 
 
+@login_required
 def delete_guardian_view(request, guardian_id):
     guardian = Guardian.objects.get(id=guardian_id)
     guardian.delete()
@@ -87,6 +99,7 @@ def delete_guardian_view(request, guardian_id):
 
 #Student
 
+@login_required
 def add_student_view (request):
     message =''
     if request.method == "POST":
@@ -117,6 +130,7 @@ def add_student_view (request):
 
 
 
+@login_required
 def edit_student_view(request,student_id):
     student = Student.objects.get(id=student_id)
     message = ""
@@ -141,6 +155,7 @@ def edit_student_view(request,student_id):
 
 
 
+@login_required
 def delete_student_view(request, student_id):
     student = Student.objects.get(id=student_id)
     student.delete()
@@ -148,6 +163,7 @@ def delete_student_view(request, student_id):
 
 #SUBJECT
 
+@login_required
 def add_subject_view (request):
     message =''
     if request.method == "POST":
@@ -176,6 +192,7 @@ def add_subject_view (request):
 
 
 
+@login_required
 def edit_subject_view(request,subject_id):
     subject = Subject.objects.get(id=subject_id)
     message = ""
@@ -201,6 +218,7 @@ def edit_subject_view(request,subject_id):
 
 
 
+@login_required
 def delete_subject_view(request, subject_id):
     subject = Subject.objects.get(id=subject_id)
     subject.delete()
@@ -210,6 +228,7 @@ def delete_subject_view(request, subject_id):
 
 #CLASS
 
+@login_required
 def add_class_view (request):
     message =''
     if request.method == "POST":
@@ -238,6 +257,7 @@ def add_class_view (request):
 
 
 
+@login_required
 def edit_class_view(request,class_id):
     class_s = Class.objects.get(id=class_id)
     message = ""
@@ -263,6 +283,7 @@ def edit_class_view(request,class_id):
 
 
 
+@login_required
 def delete_class_view(request, class_id):
     class_s = Class.objects.get(id=class_id)
     class_s.delete()
@@ -273,6 +294,7 @@ def delete_class_view(request, class_id):
 #ACADEMIC CLASS
 
 
+@login_required
 def add_academic_class_view(request):
     message = ''
     
@@ -297,6 +319,7 @@ def add_academic_class_view(request):
 
 
 
+@login_required
 def edit_academic_class_view(request,academic_class_id):
     academic_class = AcademicClass.objects.get(id=academic_class_id)
     message = ""
@@ -320,10 +343,218 @@ def edit_academic_class_view(request,academic_class_id):
     return render (request,'edit_academic_class.html',context)
 
 
+@login_required
 def delete_academic_class_view(request, academic_class_id):
     academic_class = AcademicClass.objects.get(id=academic_class_id)
     academic_class.delete()
     return redirect('add_academic_class_page')
+
+
+#GRADING
+
+@login_required
+def add_grading_view(request):
+    message = ''
+    
+    if request.method == "POST":
+        grading_form = GradingForm(request.POST)
+        
+        if grading_form.is_valid():
+            grading_form.save()
+            message = "Successfully Added"
+    else:
+        grading_form = GradingForm()
+    
+    grading = Grading.objects.all()
+    
+    context = { 
+        'form': grading_form,
+        'msg': message,
+        'grading':grading,
+    }
+    
+    return render(request, "add_grading.html", context)
+
+
+
+@login_required
+def edit_grading_view(request,grading_id):
+    grading = Grading.objects.get(id=grading_id)
+    message = ""
+    if request.method == "POST":
+        grading_form = GradingForm(request.POST,instance=grading)
+
+        if grading_form.is_valid():
+            grading_form.save()
+            message = "Changes saved Successfully"
+
+        else :
+            message = "form has valid data"
+    else:
+        grading_form = GradingForm(instance = grading)
+    context ={
+        'form':grading_form,
+        'grading':grading,
+        'message':message,
+    }
+
+    return render (request,'edit_grading.html',context)
+
+
+@login_required
+def delete_grading_view(request, grading_id):
+    grading = Grading.objects.get(id=grading_id)
+    grading.delete()
+    return redirect('add_grading_page')
+
+#EXAM
+
+
+@login_required
+def add_exam_view(request):
+    message = ''
+    
+    if request.method == "POST":
+        exam_form = ExamForm(request.POST)
+        
+        if exam_form.is_valid():
+            exam_form.save()
+            message = "Successfully Added"
+    else:
+        exam_form = ExamForm()
+    
+    exam = Exam.objects.all()
+    
+    context = { 
+        'form': exam_form,
+        'msg': message,
+        'exam':exam,
+    }
+    
+    return render(request, "add_exam.html", context)
+
+
+@login_required
+def edit_exam_view(request,exam_id):
+    exam = Exam.objects.get(id=exam_id)
+    message = ""
+    if request.method == "POST":
+        exam_form = ExamForm(request.POST,instance=exam)
+
+        if exam_form.is_valid():
+            exam_form.save()
+            message = "Changes saved Successfully"
+
+        else :
+            message = "form has valid data"
+    else:
+        exam_form = ExamForm(instance = exam)
+    context ={
+        'form':exam_form,
+        'exam':exam,
+        'message':message,
+    }
+
+    return render (request,'edit_exam.html',context)
+
+
+
+@login_required
+def delete_exam_view(request, exam_id):
+    exam = Exam.objects.get(id= exam_id)
+    exam.delete()
+    return redirect('add_exam_page')
+
+
+
+#Result
+
+
+@login_required
+def add_result_view(request):
+    message = ''
+    
+    if request.method == "POST":
+        result_form = ResultForm(request.POST)
+        
+        if result_form.is_valid():
+            result_form.save()
+            message = "Successfully Added"
+    else:
+        result_form = ResultForm()
+    
+    result = Result.objects.all()
+    
+    context = { 
+        'form': result_form,
+        'msg': message,
+        'result':result,
+    }
+    
+    return render(request, "add_result.html", context)
+
+
+@login_required
+def edit_result_view(request,result_id):
+    result = Result.objects.get(id=result_id)
+    message = ""
+    if request.method == "POST":
+        result_form = ResultForm(request.POST,instance=result)
+
+        if result_form.is_valid():
+            result_form.save()
+            message = "Changes saved Successfully"
+
+        else :
+            message = "form has valid data"
+    else:
+        result_form = ResultForm(instance = result)
+    context ={
+        'form':result_form,
+        'result':result,
+        'message':message,
+    }
+
+    return render (request,'edit_result.html',context)
+
+
+
+@login_required
+def delete_result_view(request, result_id):
+    result= Result.objects.get(id= result_id)
+    result.delete()
+    return redirect('add_result_page')
+
+
+
+def sign_up_view(request):
+    if request.method == "POST":
+        sign_up_form = UserCreationForm(request.POST)
+        if sign_up_form.is_valid():
+            sign_up_form.save()
+
+            message = "User Created"
+            
+        else:
+        
+            message = "User Not Created"
+    else:
+        sign_up_form =UserCreationForm()
+    context={
+        'form':sign_up_form
+    }
+    return render(request,'registration/sign_up.html',context)
+    
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -15,7 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
 from result.views import index_view
 from result.views import student_view
 from result.views import class_list_view
@@ -26,12 +26,18 @@ from result.views import add_student_view,edit_student_view,delete_student_view
 from result.views import add_subject_view,edit_subject_view,delete_subject_view
 from result.views import add_class_view, edit_class_view, delete_class_view
 from result.views import add_academic_class_view,edit_academic_class_view,delete_academic_class_view
+from result.views import add_grading_view, edit_grading_view ,delete_grading_view
+from result.views import add_exam_view,edit_exam_view,delete_exam_view
+from result.views import add_result_view,edit_result_view,delete_result_view,sign_up_view
+
 
 
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/',include('django.contrib.auth.urls')),
+    path('sign_up',sign_up_view, name = "sign_up_page"),
     path('', index_view, name='index_page'),
     path('student/', student_view, name='student_registered'),
     path('class/', class_list_view, name='class_page'),
@@ -51,7 +57,20 @@ urlpatterns = [
     path('delete_class/<int:class_id>/', delete_class_view, name='delete_class_page'),
     path('add_academic_class/',add_academic_class_view ,name = "add_academic_class_page"),
     path('edit_academic_class/<int:academic_class_id>',edit_academic_class_view, name="edit_academic_class_page"),
-    path('delete_academic_class/<int:academic_class_id>',delete_academic_class_view,name="delete_academic_class")
+    path('delete_academic_class/<int:academic_class_id>',delete_academic_class_view,name="delete_academic_class"),
+    path('add_grading/',add_grading_view, name = 'add_grading_page'),
+    path('edit_grading/<int:grading_id>/',edit_grading_view , name ="edit_grading_page"),
+    path ('delete_grading/<int:grading_id>/',delete_grading_view, name = 'delete_grading_page'),
+    path('add_exam/',add_exam_view ,name = 'add_exam_page'),
+    path('edit_exam/<int:exam_id>/',edit_exam_view , name="edit_exam_page"),
+    path('delete_exam/<int:exam_id>/',delete_exam_view , name= 'delete_exam_page'),
+    path ('add_result/' ,add_result_view , name = 'add_result_page'),
+    path ('edit_result/<int:result_id>/',edit_result_view , name ='edit_result_page'),
+    path ('delete_result/<int:result_id>/',delete_result_view , name ='delete_result_page'),
+    
+
+
+  
 
     
 

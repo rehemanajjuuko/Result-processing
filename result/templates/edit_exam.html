@@ -1,7 +1,7 @@
 {% extends "./base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-            <h1>Edit - {{student.first_name}} {{student.second_name}} </h1>
+            <h1>Edit Exam </h1>
 
             <form method="POST"> 
                 {% csrf_token %}
@@ -18,10 +18,4 @@
                  
             </form>
 
-        
-
 {% endblock content %}
-
-
-
-
