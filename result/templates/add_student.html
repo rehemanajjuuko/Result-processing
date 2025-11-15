@@ -9,21 +9,18 @@
     <form method="POST">
     {% csrf_token %}
     {{form|crispy}}
-    {% if msg%}
-      {{msg}} 
-    {% endif %}
-
+   
 <table class="table table-striped">
     <thead>
         <tr>
-            <th scope="col">No.</th>
-            <th scope="col">first_name</th>
-            <th scope="col">second_name</th>
-            <th scope="col">other_name</th>
-            <th scope="col">date_of_birth</th>
-            <th scope="col">address</th>
-            <th scope="col">gender</th>
-            <th scope="col">current_class</th>
+            <th scope="col">ID</th>
+            <th scope="col">FIRST NAME</th>
+            <th scope="col">SECOND NAME</th>
+            <th scope="col">OTHER NAME</th>
+            <th scope="col">DATE OF BIRTH</th>
+            <th scope="col">ADDRESS</th>
+            <th scope="col">GENDER</th>
+            <th scope="col">CLASS</th>
 
         </tr>
     </thead>
@@ -37,7 +34,7 @@
         <td> {{student.date_of_birth}} </td>
         <td> {{student.address}} </td>
         <td> {{student.gender}} </td>
-        <td> {{student.current_class}} </td>
+        <td> {{student.class_s}} </td>
 
         <td> 
             <a href="{% url 'edit_student_page' student.id   %}">Edit</a>

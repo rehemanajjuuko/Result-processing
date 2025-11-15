@@ -2,16 +2,14 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-    <h1>EXAMS</h1>
+    <h1>Result</h1>
 <div class="container">
 
 
     <form method="POST">
     {% csrf_token %}
-    {{form|crispy}}
-    {% if msg%}
-      {{msg}} 
-    {% endif %}
+    {{ form|crispy }}
+  
 
 <table class="table table-striped">
     <thead>

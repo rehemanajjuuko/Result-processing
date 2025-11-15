@@ -1,21 +1,111 @@
-{% extends "./base.html" %}
-{% load crispy_forms_tags %}
+{% extends "base.html" %}
 {% block content %}
 
-<h1>WELCOME TO RESULT PROCESSING APP</h1>
-  
- 
+<div class="container-fluid">
+  <!-- Welcome Banner -->
+  <div class="row mb-4">
+    <div class="col-12">
+      <div class="card bg-success text-white shadow-sm">
+        <div class="card-body">
+          <h2 class="mb-0">
+            <i class="bi bi-mortarboard"></i> Welcome to the Result Processing App
+          </h2>
+          <p class="mt-2">Manage academic classes, students, exams, and results with ease 🎓</p>
+        </div>
+      </div>
+    </div>
+  </div>
 
+  <!-- Quick Access Dashboard Cards -->
+  <div class="row">
+    <!-- Academic Classes -->
+    <div class="col-md-3 col-sm-6 mb-3">
+      <div class="card text-center shadow-sm">
+        <div class="card-body">
+          <i class="bi bi-mortarboard display-4 text-primary"></i>
+          <h5 class="card-title mt-2">Academic Classes</h5>
+          <a href="{% url 'add_academic_class_page' %}" class="btn btn-primary btn-sm">Manage</a>
+        </div>
+      </div>
+    </div>
 
+    <!-- Classes -->
+    <div class="col-md-3 col-sm-6 mb-3">
+      <div class="card text-center shadow-sm">
+        <div class="card-body">
+          <i class="bi bi-building display-4 text-info"></i>
+          <h5 class="card-title mt-2">Classes</h5>
+          <a href="{% url 'add_class_page' %}" class="btn btn-info btn-sm">Manage</a>
+        </div>
+      </div>
+    </div>
 
-{% endblock content %}
-  
-  
-  
-  
-  
-  
+    <!-- Subjects -->
+    <div class="col-md-3 col-sm-6 mb-3">
+      <div class="card text-center shadow-sm">
+        <div class="card-body">
+          <i class="bi bi-book display-4 text-warning"></i>
+          <h5 class="card-title mt-2">Subjects</h5>
+          <a href="{% url 'add_subject_page' %}" class="btn btn-warning btn-sm">Manage</a>
+        </div>
+      </div>
+    </div>
 
-  
-  
+    <!-- Students -->
+    <div class="col-md-3 col-sm-6 mb-3">
+      <div class="card text-center shadow-sm">
+        <div class="card-body">
+          <i class="bi bi-person-badge display-4 text-success"></i>
+          <h5 class="card-title mt-2">Students</h5>
+          <a href="{% url 'add_student_page' %}" class="btn btn-success btn-sm">Manage</a>
+        </div>
+      </div>
+    </div>
 
+    <!-- Guardians -->
+    <div class="col-md-3 col-sm-6 mb-3">
+      <div class="card text-center shadow-sm">
+        <div class="card-body">
+          <i class="bi bi-people display-4 text-secondary"></i>
+          <h5 class="card-title mt-2">Guardians</h5>
+          <a href="{% url 'add_guardian_page' %}" class="btn btn-secondary btn-sm">Manage</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Grading -->
+    <div class="col-md-3 col-sm-6 mb-3">
+      <div class="card text-center shadow-sm">
+        <div class="card-body">
+          <i class="bi bi-bar-chart display-4 text-danger"></i>
+          <h5 class="card-title mt-2">Grading</h5>
+          <a href="{% url 'add_grading_page' %}" class="btn btn-danger btn-sm">Manage</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Exams -->
+    <div class="col-md-3 col-sm-6 mb-3">
+      <div class="card text-center shadow-sm">
+        <div class="card-body">
+          <i class="bi bi-pencil-square display-4 text-dark"></i>
+          <h5 class="card-title mt-2">Exams</h5>
+          <a href="{% url 'add_exam_page' %}" class="btn btn-dark btn-sm">Manage</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results -->
+    <div class="col-md-3 col-sm-6 mb-3">
+      <div class="card text-center shadow-sm">
+        <div class="card-body">
+          <i class="bi bi-clipboard-data display-4 text-primary"></i>
+          <h5 class="card-title mt-2">Results</h5>
+          <a href="{% url 'add_result_page' %}" class="btn btn-primary btn-sm">Manage</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

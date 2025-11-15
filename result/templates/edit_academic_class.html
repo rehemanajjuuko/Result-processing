@@ -1,11 +1,13 @@
 {% extends "./base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-            <h1>Edit -Academic Class</h1>
+            <h1>Edit - {{academic_class.class_s}} </h1>
 
             <form method="POST"> 
                 {% csrf_token %}
                 {{form|crispy}}
+                
+
 
                 <input type="submit" class="btn btn-primary">
                  <input type="button" class="btn btn-danger">

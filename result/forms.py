@@ -1,4 +1,4 @@
-from django.forms import ModelForm
+from django.forms import ModelForm,DateInput
 from result.models import Guardian 
 from result.models import Student,Subject, Class,AcademicClass
 from result.models import Grading ,Exam ,Result
@@ -11,6 +11,9 @@ class StudentForm (ModelForm):
     class Meta:
         model = Student
         fields ='__all__'
+        widgets={
+            'date_of_birth':DateInput(attrs={'type':'date'})
+        }
 
 class SubjectForm(ModelForm):
     class Meta:
@@ -36,6 +39,10 @@ class ExamForm (ModelForm):
     class Meta:
         model = Exam
         fields = "__all__"
+        widgets ={
+
+            'exam_date':DateInput (attrs={'type':'date'})
+        }
 class ResultForm (ModelForm):
     class Meta:
         model = Result

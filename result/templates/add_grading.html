@@ -9,19 +9,16 @@
     <form method="POST">
     {% csrf_token %}
     {{form|crispy}}
-    {% if msg%}
-      {{msg}} 
-    {% endif %}
-
+  
 <table class="table table-striped">
     <thead>
         <tr>
-            <th scope="col">No.</th>
-            <th scope="col">points</th>
-            <th scope="col">max_score</th>
-            <th scope="col">min_score</th>
-            <th scope="col">grade</th>
-            <th scope="col">Actions</th>
+            <th scope="col">ID</th>
+            <th scope="col">POINTS</th>
+            <th scope="col">MAX SCORE</th>
+            <th scope="col">MIN SCORE</th>
+            <th scope="col">GRADE</th>
+            <th scope="col">ACTIONS</th>
             
 
         </tr>

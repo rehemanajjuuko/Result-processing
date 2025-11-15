@@ -1,11 +1,12 @@
 {% extends "./base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-            <h1>Edit - {{student.first_name}}</h1>
+            <h1>Edit - {{class_s.class_short_form}}</h1>
 
             <form method="POST"> 
                 {% csrf_token %}
                 {{form|crispy}}
+                
 
                 <input type="submit" class="btn btn-primary">
                  <input type="button" class="btn btn-danger">

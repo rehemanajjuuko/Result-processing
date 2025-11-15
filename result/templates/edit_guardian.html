@@ -1,7 +1,7 @@
 {% extends "./base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-            <h1>Edit - {{guardian.first_name}}</h1>
+            <h1>Edit - {{guardian.first_name}}  ({{guardian.relationship}}) to {{guardian.student}} </h1>
 
             <form method="POST"> 
                 {% csrf_token %}
@@ -10,12 +10,7 @@
                 <input type="submit" class="btn btn-primary">
                  <input type="button" class="btn btn-danger">
 
-                 {% if message %}
-                    {{message}}
-
-                 {% endif %}
-
-                 
+               
             </form>
 
         

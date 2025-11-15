@@ -9,10 +9,7 @@
     <form method="POST">
     {% csrf_token %}
     {{form|crispy}}
-    {% if msg%}
-      {{msg}} 
-    {% endif %}
-
+     
 <table class="table table-striped">
     <thead>
         <tr>

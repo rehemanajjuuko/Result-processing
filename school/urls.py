@@ -68,6 +68,9 @@ urlpatterns = [
     path ('edit_result/<int:result_id>/',edit_result_view , name ='edit_result_page'),
     path ('delete_result/<int:result_id>/',delete_result_view , name ='delete_result_page'),
     
+    path('sign_up', sign_up_view, name="sign_up_page"),
+
+    
 
 
   

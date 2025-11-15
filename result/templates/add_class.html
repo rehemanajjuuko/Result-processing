@@ -8,10 +8,7 @@
   <form method="POST">
     {% csrf_token %}
     {{ form|crispy }}
-    {% if msg %}
-      {{ msg }}
-    {% endif %}
-
+    
     <table class="table table-striped">
       <thead>
         <tr>
@@ -29,7 +26,7 @@
             <td>{{ class_s.class_short_form }}</td>
             <td>
               <a href="{% url 'edit_class_page' class_s.id %}">Edit</a>
-              <a href="{% url 'delete_subject_page' class_s.id %}" onclick="return confirm('Are you sure you want to delete?')">Delete</a>
+              <a href="{% url 'delete_class_page' class_s.id %}" onclick="return confirm('Are you sure you want to delete?')">Delete</a>
             </td>
           </tr>
         {% endfor %}

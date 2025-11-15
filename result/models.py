@@ -7,7 +7,7 @@ class Class (models.Model):
         return f"{self.class_short_form}"
 
 class Subject (models.Model):
-    subject = models.CharField (max_length=1, verbose_name="Subject Name")
+    subject = models.CharField (max_length=15, verbose_name="Subject Name")
     subject_short_form = models.CharField(max_length=5,verbose_name="SUBJECT")
     def __str__(self):
         return f"{self.subject_short_form}"
